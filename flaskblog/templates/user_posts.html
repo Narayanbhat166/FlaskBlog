@@ -7,10 +7,10 @@
     <div class="media-body">
         <div class="article-metadata">
             <a class="mr-2"
-                href="{{ url_for('user_posts',username = post.author.username) }}">{{ post.author.username }}</a>
+                href="{{ url_for('users.user_posts',username = post.author.username) }}">{{ post.author.username }}</a>
             <small class="text-muted">{{ post.date_posted.strftime('%d %B %Y') }}</small>
         </div>
-        <h2><a class="article-title" href="{{ url_for('post',post_id = post.id )}}">{{ post.title }}</a></h2>
+        <h2><a class="article-title" href="{{ url_for('posts.post',post_id = post.id )}}">{{ post.title }}</a></h2>
         <p class=" article-content">{{ post.content }}</p>
     </div>
 </article>
@@ -19,10 +19,10 @@
 {% if page_num %}
 {% if page_num == posts.page %}
 <a class="btn btn-info mb-4"
-    href="{{ url_for('user_posts',page = page_num,username = user.username) }}">{{page_num}}</a>
+    href="{{ url_for('users.user_posts',page = page_num,username = user.username) }}">{{page_num}}</a>
 {% else %}
 <a class="btn btn-outline-info mb-4"
-    href="{{ url_for('user_posts',page = page_num,username = user.username) }}">{{page_num}}</a>
+    href="{{ url_for('users.user_posts',page = page_num,username = user.username) }}">{{page_num}}</a>
 {% endif %}
 {% else %}
 ...
