@@ -1,5 +1,5 @@
 body {
-    background: #fafafa;
+    background: #E7D8C9;
     color: #333333;
 }
 
@@ -29,15 +29,17 @@ h6 {
 }
 
 .content-section {
-    background: #ffffff;
+    background: #ECF8F8;
     padding: 10px 20px;
-    border: 1px solid #dddddd;
+    border: 1px solid #B2967D;
     border-radius: 3px;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
 }
 
 .article-title {
-    color: #444444;
+    color: #000000;
+    font-family: 'Roboto', sans-serif;
+
 }
 
 a.article-title:hover {
@@ -58,7 +60,7 @@ a.article-title:hover {
 .article-metadata {
     padding-bottom: 1px;
     margin-bottom: 4px;
-    border-bottom: 1px solid #e3e3e3
+    border-bottom: 1px solid #e3e3e3;
 }
 
 .article-metadata a:hover {

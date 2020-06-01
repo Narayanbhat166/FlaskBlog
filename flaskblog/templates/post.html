@@ -18,29 +18,28 @@
             {% endif %}
         </div>
         <h2 class="article-title">{{ post.title }}</h2>
-        <p class="article-content">{{ post.content }}</p>
+        <p class="article-content">{{ post.content|safe }}</p>
     </div>
 </article>
 
 <!-- Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel"
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="deleteModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalCenterTitle">Delete Post</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+                Are you sure that you want to delete this post? This action cannot be undone.
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <form action="{{ url_for('posts.delete_post',post_id = post.id) }}" method="POST">
                     <input class="btn btn-danger" type="submit" value="Delete Post">
-                </form>
             </div>
         </div>
     </div>
