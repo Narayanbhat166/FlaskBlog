@@ -5,9 +5,11 @@
 <script>
     tinymce.init({
         selector: '#content',
-        plugins: ['quickbars'],
-        toolbar: false,
-        menubar: false,
+        branding: false,
+        height: 400,
+        toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent',
+        browser_spellcheck: true,
+        contextmenu: false
     });
 </script>
 {% endblock tiny %}

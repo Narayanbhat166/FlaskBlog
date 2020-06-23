@@ -15,3 +15,7 @@ def home():
 @main.route('/about')
 def about():
     return render_template('about.html', title="Narayan")
+
+@main.route('/debug')
+def debug():
+    raise Exception()
