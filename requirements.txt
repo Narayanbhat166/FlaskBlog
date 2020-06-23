@@ -20,7 +20,6 @@ Pillow==7.1.2
 protobuf==3.11.3
 pycparser==2.20
 pycrypto==2.6.1
-pygobject==3.26.1
 requests==2.23.0
 rsa==4.0
 SecretStorage==2.3.1
