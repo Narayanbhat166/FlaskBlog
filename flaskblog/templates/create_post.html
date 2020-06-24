@@ -7,9 +7,41 @@
         selector: '#content',
         branding: false,
         height: 400,
-        toolbar: 'undo redo styleselect bold italic alignleft aligncenter alignright bullist numlist outdent indent',
+        plugins: 'code image',
+        toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | outdent indent | link image',
         browser_spellcheck: true,
-        contextmenu: false
+        contextmenu: false,
+        images_upload_url: 'upload.php',
+        images_upload_handler: function (blobInfo, success, failure) {
+            var xhr, formData;
+
+            xhr = new XMLHttpRequest();
+            xhr.withCredentials = false;
+            xhr.open('POST', '/static/upload.php');
+
+            xhr.onload = function () {
+                var json;
+
+                if (xhr.status != 200) {
+                    failure('HTTP Error: ' + xhr.status);
+                    return;
+                }
+
+                json = JSON.parse(xhr.responseText);
+
+                if (!json || typeof json.location != 'string') {
+                    failure('Invalid JSON: ' + xhr.responseText);
+                    return;
+                }
+
+                success(json.location);
+            };
+
+            formData = new FormData();
+            formData.append('file', blobInfo.blob(), blobInfo.filename());
+
+            xhr.send(formData);
+        }
     });
 </script>
 {% endblock tiny %}
