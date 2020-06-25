@@ -1,9 +1,12 @@
 from flask import (render_template, url_for, flash,
-                   redirect, request, abort, Blueprint)
+                   redirect, request, abort, Blueprint,jsonify,current_app)
 from flask_login import current_user, login_required
 from flaskblog import db
 from flaskblog.models import Post
 from flaskblog.posts.forms import PostForm
+from flaskblog.users.utils import save_picture
+from PIL import Image
+import os,secrets
 
 
 posts = Blueprint('posts', __name__)
@@ -59,3 +62,35 @@ def delete_post(post_id):
     db.session.commit()
     flash('Your post has been Deleted!', 'info')
     return redirect(url_for('main.home'))
+
+@posts.route('/upload',methods=['POST'])
+@login_required
+def save_image():
+    image = request.files['file']
+    random_hex = secrets.token_hex(8)
+    fileName = image.filename
+    _, f_ext = os.path.splitext(fileName)
+    picture_fn = random_hex + f_ext
+    picture_path = os.path.join(current_app.root_path, 'static/post', picture_fn)
+    location = url_for('static',filename='post/'+picture_fn,_external = True)
+
+    #Resize
+    ratio = 0.7
+    i = Image.open(image)
+    image_size = i.size
+
+    output_size = (768, 432)
+    if image_size > output_size:
+        i = i.resize(output_size,Image.ANTIALIAS)
+        print("Large")
+    else:
+        i = i.thumbnail(image_size,Image.ANTIALIAS)
+    
+    i.save(picture_path)
+
+    if image:
+        location = {'location':location}
+        return jsonify(location)
+    else:
+        return 'error'
+        
