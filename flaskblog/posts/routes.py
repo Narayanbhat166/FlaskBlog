@@ -82,15 +82,10 @@ def save_image():
     output_size = (768, 432)
     if image_size > output_size:
         i = i.resize(output_size,Image.ANTIALIAS)
-        print("Large")
     else:
-        i = i.thumbnail(image_size,Image.ANTIALIAS)
+        i = i.resize(image_size,Image.ANTIALIAS)
     
     i.save(picture_path)
-
-    if image:
-        location = {'location':location}
-        return jsonify(location)
-    else:
-        return 'error'
+    location = {'location':location}
+    return jsonify(location)
         
