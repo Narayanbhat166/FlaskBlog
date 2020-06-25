@@ -11,17 +11,13 @@
         toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright | bullist numlist | outdent indent | link image',
         browser_spellcheck: true,
         contextmenu: false,
-        image_caption: true,
-        images_upload_handler: function (blobInfo, success, failure, progress) {
+        images_upload_url: 'upload.php',
+        images_upload_handler: function (blobInfo, success, failure) {
             var xhr, formData;
 
             xhr = new XMLHttpRequest();
             xhr.withCredentials = false;
-            xhr.open('POST', '/upload');
-
-            xhr.upload.onprogress = function (e) {
-                progress(e.loaded / e.total * 100);
-            };
+            xhr.open('POST', '/static/upload.php');
 
             xhr.onload = function () {
                 var json;
@@ -44,7 +40,7 @@
             formData = new FormData();
             formData.append('file', blobInfo.blob(), blobInfo.filename());
 
-            xhr.send(formData)
+            xhr.send(formData);
         }
     });
 </script>
