@@ -31,9 +31,8 @@ h6 {
 .content-section {
     background: #ECF8F8;
     padding: 10px 20px;
-    border: 1px solid #B2967D;
-    border-radius: 3px;
-    margin-bottom: 5px;
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 .article-title {
