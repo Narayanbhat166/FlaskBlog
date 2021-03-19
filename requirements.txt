@@ -16,7 +16,7 @@ jsonschema==2.6.0
 numpy==1.18.3
 oauthlib==2.0.6
 opencv-python==4.2.0.34
-Pillow==7.1.2
+Pillow==8.1.1
 protobuf==3.11.3
 pycparser==2.20
 pycrypto==2.6.1
